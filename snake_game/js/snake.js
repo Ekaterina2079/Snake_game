@@ -192,7 +192,10 @@ function gameOver(endType) {
   alert('Game over!');
 }
 
+localStorage.setItem('bestResult','score');
+
 let bestResult = localStorage.getItem('bestResult');
+let score = 100
 
   if (localStorage.getItem('bestResult') === null) {
   localStorage.setItem('bestResult', score);
