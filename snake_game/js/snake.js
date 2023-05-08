@@ -1,7 +1,6 @@
 function statRender() {  
   document.getElementById('snakeLength').innerHTML = snake.sections.length;
-  document.getElementById('gameSpeed').innerHTML = gameSpeed;
-  document.getElementById('bestResult').innerHTML = bestResult; 
+  document.getElementById('gameSpeed').innerHTML = gameSpeed; 
 }
 
 async function main() {
@@ -192,19 +191,6 @@ function gameOver(endType) {
   alert('Game over!');
 }
 
-localStorage.setItem('bestResult','score');
-
-let bestResult = localStorage.getItem('bestResult');
-let score = 100
-
-  if (localStorage.getItem('bestResult') === null) {
-  localStorage.setItem('bestResult', score);
-  } else {
-  if (score > localStorage.getItem('bestResult')) {
-    localStorage.setItem('bestResult', score);
-  }
-}
-
 function setSnakeOnDisplay() {
   display[ snake.sections[ 0 ].y ][ snake.sections[ 0 ].x ].type = 1;
   if( snake.sections.length > 1 )
@@ -289,4 +275,12 @@ function startGame(onTickHandler) {
   gameStatus = 'game';
   onTick = onTickHandler;
   gameTimer = setInterval(tick, 1000 - (gameSpeed * 50));
+}
+
+localStorage.setItem('bestResult', snakeLength);
+
+let bestResult = localStorage.getItem('bestResult');
+if(snakeLength > bestResult) {
+  localStorage.setItem('bestResult', snakeLength);
+  alert('Record:' + snakeLength);
 }
